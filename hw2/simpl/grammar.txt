@@ -1,0 +1,45 @@
+<cmd> ::=
+    "skip"
+  | <ident> ":=" <aexp>
+  | <cmd> ";" <cmd>
+  | "if" <bexp> "then" <cmd> "else" <cmd> "end"
+  | "while" <bexp> "do" <cmd> "end"
+  | "(" <cmd> ")"
+
+<aexp> ::= <aexp_add>
+
+<aexp_add> ::=
+    <aexp_add> "+" <aexp_mul>
+  | <aexp_add> "-" <aexp_mul>
+  | <aexp_mul>
+
+<aexp_mul> ::=
+    <aexp_mul> "*" <aexp_atom>
+  | <aexp_atom>
+
+<aexp_atom> ::=
+    <nat>
+  | <ident>
+  | "(" <aexp> ")"
+
+<bexp> ::= <bexp_and>
+
+<bexp_and> ::=
+    <bexp_and> "&&" <bexp_not>
+  | <bexp_not>
+
+<bexp_not> ::=
+    "not" <bexp_not>
+  | <bexp_atom>
+
+<bexp_atom> ::=
+    "true"
+  | "false"
+  | <aexp> <relop> <aexp>
+  | "(" <bexp> ")"
+
+<relop> ::= "=" | "!=" | "<=" | ">"
+
+<nat>   ::= digit { digit }
+<ident> ::= letter { letter | digit | "_" }
+

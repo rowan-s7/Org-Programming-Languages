@@ -1,0 +1,20 @@
+# dune utop lib
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /home/rowan7s/.cache/dune/db
+# Workspace root: /home/rowan7s/opl/hw2/simpl
+# Auto-detected concurrency: 16
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /home/rowan7s/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_ae387d_output
+$ (cd _build/default && /home/rowan7s/.opam/cs3110-2026sp/bin/ocamldep.opt -modules -impl lib/eval.ml) > _build/default/lib/.simpl.objs/simpl__Eval.impl.d
+$ (cd _build/default && /home/rowan7s/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.simpl.objs/byte -no-alias-deps -opaque -open Simpl -o lib/.simpl.objs/byte/simpl__Eval.cmo -c -impl lib/eval.ml)
+$ (cd _build/default && /home/rowan7s/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -a -o lib/simpl.cma lib/.simpl.objs/byte/simpl.cmo lib/.simpl.objs/byte/simpl__Ast.cmo lib/.simpl.objs/byte/simpl__Parser.cmo lib/.simpl.objs/byte/simpl__Lexer.cmo lib/.simpl.objs/byte/simpl__Eval.cmo)
+$ (cd _build/default && /home/rowan7s/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -w -24 -g -o lib/.utop/utop.bc /home/rowan7s/.opam/cs3110-2026sp/lib/ocaml/compiler-libs/ocamlcommon.cma /home/rowan7s/.opam/cs3110-2026sp/lib/ocaml/compiler-libs/ocamlbytecomp.cma /home/rowan7s/.opam/cs3110-2026sp/lib/ocaml/compiler-libs/ocamltoplevel.cma /home/rowan7s/.opam/cs3110-2026sp/lib/findlib/findlib.cma /home/rowan7s/.opam/cs3110-2026sp/lib/findlib/findlib_top.cma /home/rowan7s/.opam/cs3110-2026sp/lib/logs/logs.cma /home/rowan7s/.opam/cs3110-2026sp/lib/lwt/lwt.cma /home/rowan7s/.opam/cs3110-2026sp/lib/logs/lwt/logs_lwt.cma /home/rowan7s/.opam/cs3110-2026sp/lib/ocplib-endian/ocplib_endian.cma /home/rowan7s/.opam/cs3110-2026sp/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /home/rowan7s/.opam/cs3110-2026sp/lib/ocaml/unix/unix.cma /home/rowan7s/.opam/cs3110-2026sp/lib/ocaml/threads/threads.cma /home/rowan7s/.opam/cs3110-2026sp/lib/lwt/unix/lwt_unix.cma -I /home/rowan7s/.opam/cs3110-2026sp/lib/lwt/../stublibs /home/rowan7s/.opam/cs3110-2026sp/lib/react/react.cma /home/rowan7s/.opam/cs3110-2026sp/lib/lwt_react/lwt_react.cma /home/rowan7s/.opam/cs3110-2026sp/lib/result/result.cma /home/rowan7s/.opam/cs3110-2026sp/lib/uutf/uutf.cma /home/rowan7s/.opam/cs3110-2026sp/lib/uucp/uucp.cma /home/rowan7s/.opam/cs3110-2026sp/lib/uuseg/uuseg.cma /home/rowan7s/.opam/cs3110-2026sp/lib/zed/zed.cma /home/rowan7s/.opam/cs3110-2026sp/lib/trie/trie.cma /home/rowan7s/.opam/cs3110-2026sp/lib/mew/mew.cma /home/rowan7s/.opam/cs3110-2026sp/lib/mew_vi/mew_vi.cma /home/rowan7s/.opam/cs3110-2026sp/lib/lambda-term/lambda_term.cma -I /home/rowan7s/.opam/cs3110-2026sp/lib/lambda-term/../stublibs /home/rowan7s/.opam/cs3110-2026sp/lib/xdg/xdg.cma -I /home/rowan7s/.opam/cs3110-2026sp/lib/xdg/../stublibs /home/rowan7s/.opam/cs3110-2026sp/lib/utop/uTop.cma lib/simpl.cma lib/.utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)

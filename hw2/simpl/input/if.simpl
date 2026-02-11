@@ -1,0 +1,6 @@
+x := 5;
+if ~(x <= 3) && true then
+  y := x * 2
+else
+  y := 0
+end
