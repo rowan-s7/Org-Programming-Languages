@@ -1,0 +1,71 @@
+(lang dune 3.21)
+(name simpl)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/simpl))
+(files
+ (lib
+  (META
+   ast.ml
+   dune-package
+   eval_smallstep.ml
+   lexer.ml
+   opam
+   parser.ml
+   parser.mli
+   simpl.a
+   simpl.cma
+   simpl.cmi
+   simpl.cmt
+   simpl.cmx
+   simpl.cmxa
+   simpl.ml
+   simpl__Ast.cmi
+   simpl__Ast.cmt
+   simpl__Ast.cmx
+   simpl__Eval_smallstep.cmi
+   simpl__Eval_smallstep.cmt
+   simpl__Eval_smallstep.cmx
+   simpl__Lexer.cmi
+   simpl__Lexer.cmt
+   simpl__Lexer.cmx
+   simpl__Parser.cmi
+   simpl__Parser.cmt
+   simpl__Parser.cmti
+   simpl__Parser.cmx))
+ (libexec (simpl.cmxs))
+ (bin (simpl))
+ (doc (README.md)))
+(library
+ (name simpl)
+ (kind normal)
+ (archives (byte simpl.cma) (native simpl.cmxa))
+ (plugins (byte simpl.cma) (native simpl.cmxs))
+ (native_archives simpl.a)
+ (main_module_name Simpl)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name simpl)
+     (visibility public)
+     (kind alias)
+     (source (path Simpl) (impl (path simpl.ml-gen))))
+    (name Simpl)
+    (modules
+     (module
+      (obj_name simpl__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path ast.ml))))
+     (module
+      (obj_name simpl__Eval_smallstep)
+      (visibility public)
+      (source (path Eval_smallstep) (impl (path eval_smallstep.ml))))
+     (module
+      (obj_name simpl__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path lexer.ml))))
+     (module
+      (obj_name simpl__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))))
+   (wrapped true))))

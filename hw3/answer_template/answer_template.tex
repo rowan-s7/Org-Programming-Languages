@@ -1,0 +1,177 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{plcourse}
+\usepackage{proof}
+\usepackage{stmaryrd}
+\usepackage{angle}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{xspace}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{listings}
+
+%% Synatx highlighting for OCaml
+\lstset{
+ language=caml,
+ columns=[c]fixed,
+% basicstyle=\small\ttfamily,
+ keywordstyle=\bfseries,
+ upquote=true,
+ commentstyle=,
+ breaklines=true,
+ showstringspaces=false,
+ stringstyle=\color{blue},
+ literate={'"'}{\textquotesingle "\textquotesingle}3
+}
+
+\homework{3}
+
+\begin{document}
+\hwsubheader
+
+\vspace{5cm}
+{\LARGE
+\begin{tabular}{rp{0.6\linewidth}}
+  Name:&{Rowan Sharwood}\\
+  UML ID:&{02090573}\\
+  Collaborators:&{\normalsize
+    {None}
+    }
+\end{tabular}
+}
+
+\vfill
+\textit{Make sure that the remaining pages of this assignment do not contain any identifying information.}
+\vfill
+%%% NOTE: Uncomment the below align* block to see how it renders to PDF.
+%%       Use macros $\cond{b}{c_1}{c_2}$ and $\while{b}{c}$ (note the math mode in $$)
+%%       to emit if b then c_1 else c_2 and while b do c, respectively.
+%%       Use $\dowhile{c}{b}$ to emit do c while b.
+%%       Play around the macros until you understand.
+
+
+
+%% \begin{align*}
+%% &\text{arithmetic expressions } 
+%%    &&a \in \Set{Aexp} & a ::= ~& x \mid n \mid a_1 + a_2  \mid a_1 \times a_2 \mid a_1 - a_2 \mid a1/a2 \\
+%% %
+%% &\text{boolean expressions}   
+%%   && b \in \Set{Bexp}  &b ::= ~& \TRUE \mid \FALSE \mid b_1 \&\& b_2 \mid \sim b  \\
+%%   && &&& \mid a_1 \gt a_2 \mid a_1 \le a_2 \mid a_1 = a_2 \mid a_1 != a_2 \\
+%% %
+%% &\text{commands}	       
+%%   && c \in \Set{Com} & c ::= ~&\SKIP \mid x := a \mid c_1 ; c_2\\
+%% &&&&&				     ~~ \mid \cond{b}{c_1}{c_2}\\
+%% &&&&&				    ~~ \mid \while{b}{c} \mid \dowhile{c}{b}
+%% \end{align*}
+
+
+
+% %%  Use this syntax to write inference rules
+      % %%   \infrule[Name]
+      % %%      {
+      % %%       a_1 \in A \quad a_2 \in A
+      % %%      }
+      % %%      {
+      % %%       a \in A
+      % %%      }
+      % %%      {
+      % %%       side condition
+      % %%      }
+     % %%
+
+     
+     %% You can replace <RULE-NAME> with the name of
+     %% actual rule.
+     
+     %% Use \dots if you need to add something like 
+     %% "..." to the end of your small step semantics
+
+
+%%% Uncomment the below block to see the list of inference rules for commands.
+
+\begin{center}
+\infrule{<a,\sigma> \stepsone <a',\sigma>}
+            {<x := a,\sigma> \stepsone <x := a',\sigma>}{}
+%
+\hfil
+%
+\infrule{}
+            {<x := n,\sigma> \stepsone <\SKIP,\sigma[x \mapsto n]>}{}
+%
+\\[2em]
+%
+\infrule{<c_1,\sigma> \stepsone <c_1',\sigma'>}
+            {<c_1; c_2,\sigma> \stepsone <c_1';c_2,\sigma'>}{}
+%
+\hfil
+%
+\infrule{}
+            {<\SKIP; c_2,\sigma> \stepsone <c_2,\sigma>}{}
+%
+%
+\\[2em]
+
+\infrule{<b,\sigma> \stepsone <b',\sigma>}
+            {<\cond{b}{c_1}{c_2},\sigma> \stepsone <\cond{b'}{c_1}{c_2},\sigma>}{}
+%
+\\[2em]
+%
+\infrule{}
+            {<\cond{\TRUE}{c_1}{c_2},\sigma> \stepsone <c_1,\sigma>}{}
+%
+\hfil
+%
+\infrule{}
+            {<\cond{\FALSE}{c_1}{c_2},\sigma> \stepsone <c_2,\sigma>}{}
+%
+\\[2em]
+
+\infrule{}
+  {<\while{b}{c}, \sigma> \stepsone <\cond{b}{(c; \while{b}{c})}{\SKIP}, \sigma>}{}
+
+\end{center}
+
+
+
+
+
+\newpage
+
+\begin{question}{Small-Step Semantics}{(40 points)}
+  
+  \begin{subquestion} Give the inference rules for division \end{subquestion}
+  \begin{center}
+
+  \infrule{<a_1,\sigma> \stepsone <a_1',\sigma>}
+        {<a_1 / a_2,\sigma> \stepsone <a_1' / a_2,\sigma>}{}
+  \\[2em]
+  \infrule{<a_2,\sigma> \stepsone <a_2',\sigma>}
+        {<n / a_2,\sigma> \stepsone <n / a_2',\sigma>}{}
+   \\[2em]
+   \infrule{}
+        {<n / m,\sigma> \stepsone <p,\sigma>}
+        {$m \neq 0 \quad p = n / m$}
+  \end{center}
+  
+  \begin{subquestion} Give the inference rules for do-while \end{subquestion}
+  \begin{center}
+  \infrule{}
+        {<\dowhile{c}{b},\sigma> \stepsone
+        <c;\cond{b}{\dowhile{c}{b}}{\SKIP},\sigma>}{}
+    \end{center}
+  \end{question}
+
+  \begin{question}{Implementation in OCaml}{(5 points)}
+    \begin{subquestion} (Answer in OCaml.) \end{subquestion}
+    
+    \begin{subquestion} Try running the large-step interpreter you wrote in HW2 (the ``eval\_c'' function)  on some example programs, and then run the small-step interpreter you just wrote (the ``multistep\_c'' function) on the same files. What can you say about the behavior of the two interpreters in relation to each other? \end{subquestion}
+    
+\textcolor{ForestGreen}{
+When I ran the same example programs using both the large-step interpreter \texttt{eval\_c} and the small-step interpreter \texttt{multistep\_c} , they both produced the same final state for all the programs that terminate. The variable values at the end were identical, which shows that both interpreters are consistent with each other in terms of the final result. The main difference is that the large-step interpreter evaluates a command directly to its final state in one recursive evaluation and just computes the result. The small-step interpreter, on the other hand, executes the program one step at a time. It models the actual execution process more explicitly, moving through assignments, conditionals, and loops piece by piece. Both interpreters have similar functions for terminating programs, but the small-step interpreter makes the execution process more detailed and visible, while the large-step interpreter jumps straight to the final answer.}
+\end{question}
+\end{document}

@@ -1,0 +1,10 @@
+(library
+ (name simpl)
+ (public_name simpl)
+ (modules Ast Parser Lexer Eval_smallstep))
+ 
+(menhir
+ (modules parser))
+
+(ocamllex
+ (modules lexer))

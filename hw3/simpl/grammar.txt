@@ -1,0 +1,43 @@
+<program> ::= <stmt>
+<stmt> ::=
+      "skip"
+    | <ident> ":=" <expr>
+    | <stmt> ";" <stmt>
+    | "if" <expr> "then" <stmt> "else" <stmt>
+    | "while" <expr> "do" <stmt>
+    | "{" <stmt> "}"
+    | "(" <stmt> ")"
+
+<expr> ::= <or-expr>
+<or-expr> ::=
+      <or-expr> "||" <and-expr>
+    | <and-expr>
+
+<and-expr> ::=
+      <and-expr> "&&" <rel-expr>
+    | <rel-expr>
+
+<rel-expr> ::=
+      <arith-expr> <rel-op> <arith-expr>
+    | <arith-expr>
+
+<rel-op> ::= "<" | "<=" | ">" | ">=" | "=" | "!="
+<arith-expr> ::=
+      <arith-expr> ("+" | "-") <term>
+    | <term>
+
+<term> ::=
+      <term> ("*" | "/") <unary>
+    | <unary>
+
+<unary> ::=
+      "not" <unary>
+    | "-" <unary>
+    | <primary>
+
+<primary> ::=
+      <int>
+    | "true"
+    | "false"
+    | <ident>
+    | "(" <expr> ")"

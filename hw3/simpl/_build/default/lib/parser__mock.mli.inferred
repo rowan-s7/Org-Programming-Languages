@@ -1,0 +1,41 @@
+type token =
+    WHILE
+  | TRUE
+  | TIMES
+  | THEN
+  | SKIP
+  | SEMI
+  | RPAREN
+  | PLUS
+  | NOT
+  | NEQ
+  | NAT of int
+  | MINUS
+  | LPAREN
+  | LE
+  | IF
+  | IDENT of string
+  | GT
+  | FALSE
+  | EQ
+  | EOF
+  | END
+  | ELSE
+  | DO
+  | ASSIGN
+  | ANDAND
+val menhir_begin_marker : int
+val xv_relop : Ast.rel
+val xv_program : Ast.cmd
+val xv_cmd_seq : Ast.cmd
+val xv_cmd_atom : Ast.cmd
+val xv_cmd : Ast.cmd
+val xv_bexp : Ast.bexp
+val xv_b_not : Ast.bexp
+val xv_b_atom : Ast.bexp
+val xv_b_and : Ast.bexp
+val xv_aexp : Ast.aexp
+val xv_a_mul : Ast.aexp
+val xv_a_atom : Ast.aexp
+val xv_a_add : Ast.aexp
+val menhir_end_marker : int

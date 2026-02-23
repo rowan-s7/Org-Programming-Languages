@@ -1,0 +1,39 @@
+lib: [
+  "_build/install/default/lib/simpl/META"
+  "_build/install/default/lib/simpl/ast.ml"
+  "_build/install/default/lib/simpl/dune-package"
+  "_build/install/default/lib/simpl/eval_smallstep.ml"
+  "_build/install/default/lib/simpl/lexer.ml"
+  "_build/install/default/lib/simpl/opam"
+  "_build/install/default/lib/simpl/parser.ml"
+  "_build/install/default/lib/simpl/parser.mli"
+  "_build/install/default/lib/simpl/simpl.a"
+  "_build/install/default/lib/simpl/simpl.cma"
+  "_build/install/default/lib/simpl/simpl.cmi"
+  "_build/install/default/lib/simpl/simpl.cmt"
+  "_build/install/default/lib/simpl/simpl.cmx"
+  "_build/install/default/lib/simpl/simpl.cmxa"
+  "_build/install/default/lib/simpl/simpl.ml"
+  "_build/install/default/lib/simpl/simpl__Ast.cmi"
+  "_build/install/default/lib/simpl/simpl__Ast.cmt"
+  "_build/install/default/lib/simpl/simpl__Ast.cmx"
+  "_build/install/default/lib/simpl/simpl__Eval_smallstep.cmi"
+  "_build/install/default/lib/simpl/simpl__Eval_smallstep.cmt"
+  "_build/install/default/lib/simpl/simpl__Eval_smallstep.cmx"
+  "_build/install/default/lib/simpl/simpl__Lexer.cmi"
+  "_build/install/default/lib/simpl/simpl__Lexer.cmt"
+  "_build/install/default/lib/simpl/simpl__Lexer.cmx"
+  "_build/install/default/lib/simpl/simpl__Parser.cmi"
+  "_build/install/default/lib/simpl/simpl__Parser.cmt"
+  "_build/install/default/lib/simpl/simpl__Parser.cmti"
+  "_build/install/default/lib/simpl/simpl__Parser.cmx"
+]
+libexec: [
+  "_build/install/default/lib/simpl/simpl.cmxs"
+]
+bin: [
+  "_build/install/default/bin/simpl"
+]
+doc: [
+  "_build/install/default/doc/simpl/README.md"
+]
